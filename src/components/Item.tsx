@@ -1,12 +1,14 @@
 import { Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
-import { CartItemType } from '../App';
+import useCart from '../hook/useCart';
+import { TProduct } from '../redux/reducers/cart';
 
 type Props = {
-  item: CartItemType;
-  handleAddToCart: (clickedItem: CartItemType) => void;
+  item: TProduct;
 };
 
-const Item = ({ item, handleAddToCart }: Props) => {
+const Item = ({ item }: Props) => {
+  const { handleAddToCart } = useCart();
+
   return (
     <Card
       variant="outlined"

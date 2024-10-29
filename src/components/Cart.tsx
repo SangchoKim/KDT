@@ -1,16 +1,13 @@
 import { Box, List, Typography } from '@mui/material';
-import { CartItemType } from '../App';
+import useCart from '../hook/useCart';
+import { TProduct } from '../redux/reducers/cart';
 import CartItem from './CartItem';
 
-type Props = {
-  cartItems: CartItemType[];
-  addToCart: (clickedItem: CartItemType) => void;
-  removeFromCart: (id: number) => void;
-};
-
-const Cart = ({ cartItems, addToCart, removeFromCart }: Props) => {
-  const calculateTotal = (items: CartItemType[]) =>
+const Cart = () => {
+  const calculateTotal = (items: TProduct[]) =>
     items.reduce((acc, item) => acc + item.amount * item.price, 0);
+
+  const { cartItems } = useCart();
 
   return (
     <Box>
@@ -20,12 +17,7 @@ const Cart = ({ cartItems, addToCart, removeFromCart }: Props) => {
       <List>
         {cartItems.length === 0 ? <p>No items in cart.</p> : null}
         {cartItems.map((item) => (
-          <CartItem
-            key={item.id}
-            item={item}
-            addToCart={addToCart}
-            removeFromCart={removeFromCart}
-          />
+          <CartItem key={item.id} item={item} />
         ))}
       </List>
       <Typography textAlign={'right'} marginRight={5} variant="h6">
