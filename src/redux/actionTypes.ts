@@ -5,7 +5,6 @@ export type TCartAction = ActionType<typeof addCart> | ActionType<typeof removeC
 
 export type TProductAction = ActionType<typeof loadProducts>;
 
-export const ADD_CART = 'ADD_CART';
-export const REMOVE_CART = 'REMOVE_CART';
+// TODO: 8. 장바구나 액션 타입 정의
 
 export const LOAD_PRODUCTS = 'LOAD_PRODUCTS';

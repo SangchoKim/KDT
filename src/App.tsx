@@ -13,10 +13,17 @@ import { TProduct } from './redux/reducers/cart';
 
 function App() {
   const dispatch = useDispatch();
+
+  // 장바구니 비즈니스 로직 hook
   const { cartItems } = useCart();
+
+  // 상품 목록
   const productItems = useSelector((state: RootState) => state.product.productItems);
 
+  // 장바구니 열기/닫기
   const [cartOpen, setCartOpen] = useState(false);
+
+  // 로딩 상태
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -26,8 +33,10 @@ function App() {
     setLoading(false);
   }, [dispatch]);
 
+  // 장바구니에 담긴 상품 수
   const getTotalItems = (items: TProduct[]) => items.reduce((acc, item) => acc + item.amount, 0);
 
+  // 로딩 중일 때
   if (loading) {
     return (
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -40,6 +49,7 @@ function App() {
     );
   }
 
+  // 상품을 노출할 때
   return (
     <Box>
       <Drawer

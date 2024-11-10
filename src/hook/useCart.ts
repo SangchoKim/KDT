@@ -1,19 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { addCart, removeCart } from '../redux/action';
-import { RootState } from '../redux/reducers';
 import { TProduct } from '../redux/reducers/cart';
 
 const useCart = () => {
-  const dispatch = useDispatch();
-  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  // TODO: 13. 장바구니 상태 조회 셀렉터
+  const cartItems: TProduct[] = [];
 
-  const handleAddToCart = (clickedItem: TProduct) => {
-    dispatch(addCart(clickedItem));
-  };
+  // TODO: 11. 장바구니에 상품 추가 함수
+  const handleAddToCart = (clickedItem: TProduct) => {};
 
-  const handleRemoveFromCart = (id: number) => {
-    dispatch(removeCart(id));
-  };
+  // TODO: 12. 장바구니에 상품 추가 함수
+  const handleRemoveFromCart = (id: number) => {};
 
   return { handleAddToCart, handleRemoveFromCart, cartItems };
 };

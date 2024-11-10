@@ -1,13 +1,9 @@
-import { ADD_CART, LOAD_PRODUCTS, REMOVE_CART } from './actionTypes';
+import { LOAD_PRODUCTS } from './actionTypes';
 import { TProduct } from './reducers/cart';
 
-export const addCart = (clickedItem: TProduct) => {
-  return { type: ADD_CART, payload: clickedItem };
-};
+// TODO: 9. 장바구니에 상품 추가 디스패치 함수
 
-export const removeCart = (id: number) => {
-  return { type: REMOVE_CART, payload: id };
-};
+// TODO: 10. 장바구니에 상품 삭제 디스패치 함수
 
 export const loadProducts = (items: TProduct[]) => {
   return { type: LOAD_PRODUCTS, payload: items };
