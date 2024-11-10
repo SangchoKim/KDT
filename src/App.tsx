@@ -19,9 +19,16 @@ const getProducts = async (): Promise<CartItemType[]> =>
   await (await fetch('https://fakestoreapi.com/products')).json();
 
 function App() {
+  // 장바구니 오픈 상태
   const [cartOpen, setCartOpen] = useState(false);
+
+  // 장바구니 아이템
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+
+  // 상품 목록
   const [items, setItems] = useState<CartItemType[]>([]);
+
+  // 로딩 상태
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -34,9 +41,11 @@ function App() {
     fetchProducts();
   }, []);
 
+  // 장바구니에 담긴 아이템의 총 개수
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((acc, item) => acc + item.amount, 0);
 
+  // 장바구니에 아이템 추가
   const handleAddToCart = (clickedItem: CartItemType) => {
     setCartItems((prev) => {
       const isItemInCart = prev.find((item) => item.id === clickedItem.id);
@@ -51,6 +60,7 @@ function App() {
     });
   };
 
+  // 장바구니에서 아이템 삭제
   const handleRemoveFromCart = (id: number) => {
     setCartItems((prev) =>
       prev.reduce((acc, item) => {
@@ -64,6 +74,7 @@ function App() {
     );
   };
 
+  // 로딩 중일 때
   if (loading) {
     return (
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -76,6 +87,7 @@ function App() {
     );
   }
 
+  // 로딩이 끝나면 상품 목록을 보여줌
   return (
     <Box>
       <Drawer
