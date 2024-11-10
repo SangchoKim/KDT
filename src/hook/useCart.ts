@@ -7,10 +7,12 @@ const useCart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
+  // 장바구니에 상품 추가
   const handleAddToCart = (clickedItem: TProduct) => {
     dispatch(addCart(clickedItem));
   };
 
+  // 장바구니에서 상품 삭제
   const handleRemoveFromCart = (id: number) => {
     dispatch(removeCart(id));
   };

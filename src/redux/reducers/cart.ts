@@ -20,11 +20,14 @@ export type TCartState = {
   totalProductInCart?: number;
 };
 
+// 장바구니 상태 초기값
 const initialState: TCartState = {
   cartItems: [],
 };
 
+// 장바구니 리듀서
 export default createReducer<TCartState, TCartAction>(initialState, {
+  // 장바구니에 상품 추가
   [ADD_CART]: (state, action) => {
     const data = action.payload as TProduct;
     const isItemInCart = state.cartItems.find((item) => item.id === data.id);
@@ -43,6 +46,8 @@ export default createReducer<TCartState, TCartAction>(initialState, {
       cartItems: [...state.cartItems, { ...data, amount: 1 }],
     };
   },
+
+  // 장바구니에서 상품 삭제
   [REMOVE_CART]: (state, action) => {
     const id = action.payload as number;
     return {
